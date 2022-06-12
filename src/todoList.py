@@ -7,7 +7,7 @@ import functools
 from botocore.exceptions import ClientError
 
 
-def get_table(dynamodb=None):
+def get_table(dynamodb=None):  # pragma: no cover 
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']
         if URL:
@@ -143,6 +143,6 @@ def create_todo_table(dynamodb):
     # Wait until the table exists.
     table.meta.client.get_waiter('table_exists').wait(TableName=tableName)
     if (table.table_status != 'ACTIVE'):
-        raise AssertionError()
+        raise AssertionError()  # pragma: no cover
 
     return table
